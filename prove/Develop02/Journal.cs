@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Runtime.CompilerServices;
 
 // Journal Class
 //Function : Handles saving/loading from a file and stores entries
@@ -27,6 +28,7 @@ class Journal
             Console.WriteLine(entry.ToString());
         }
     }
+    
     public void SaveToFile(string filename)
     {
         using (StreamWriter writer = new StreamWriter(filename))
