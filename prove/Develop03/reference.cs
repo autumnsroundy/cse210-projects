@@ -1,8 +1,18 @@
 using System;
 using System.Collections.Generic;
 
+
+// Reference class stores the reference of the scripture (book, chapter, and verse)
+// It also allows for a range of verses (Hebrews 11: 1-3) to be used, or only a single
+// verse as well. It provides the method to return it in the appropriate format. 
 class Reference
 {
+
+    // this.___ : keyword refers to the current instance of the class, typically used to 
+    // distinguid between instance variables and method parameters - helps avoid ambiguity
+    // when parameter names are the same as the class fields
+        //ex: this.book refers to the instance variable book while book without this. refers
+        // to the parameter passed to the constructor. 
     private string book;
     private string chapter;
     private string startVerse;
@@ -12,7 +22,7 @@ class Reference
     {
         this.book = book;
         this.chapter = chapter;
-        
+
         //single verse or a range (1-3), declare and initialize the 'verese' array by splitting the input string using '-'
         var verses = verse.Split('-');
         this.startVerse = verses[0]; //start verse is always present

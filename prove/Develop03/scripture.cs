@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-
+// Scripture class holds the scripture reference and a list of words in the scripture. It
+// has methods to hide random words, check if all words are hidden, and then return a list 
+// of words.
 class Scripture
 {
     private Reference reference;
@@ -25,6 +27,8 @@ class Scripture
     {
         return words;
     }
+
+    //method that randomly selects a word that is NOT already hidden and marks it hidden
     public void HideRandomWord()
     {
         Random rand = new Random();
