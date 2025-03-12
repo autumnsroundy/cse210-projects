@@ -1,5 +1,6 @@
-1360
-Write in Journal|20|ChecklistGoal|1|7|100
+2010
+Write in Journal|20|ChecklistGoal|6|7|100
 Read scriptures|20|ChecklistGoal|4|4|200
-Read a book|50|SimpleGoal|0
+Read a book|50|SimpleGoal|50
 Serve everyday|30|EternalGoal|60
+Go on a vacation|500|SimpleGoal|500

@@ -13,6 +13,8 @@ public class Program
             // Display menu
             Console.Clear();
             Console.WriteLine("Welcome to the Eternal Quest Goal Manager!");
+            Console.WriteLine($"Total Points: {goalManager.TotalPoints}");
+            Console.WriteLine($"Current Level: {goalManager.Level}");
             Console.WriteLine("1. Add a Goal");
             Console.WriteLine("2. Display Goals");
             Console.WriteLine("3. Record Goal Progress");

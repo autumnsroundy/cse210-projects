@@ -1,7 +1,21 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
 public class GoalManager
 {
     private List<Goal> goals;
     public int TotalPoints { get; private set; }
+    
+    // Property to calculate the level based on TotalPoints
+    public int Level
+    {
+        get
+        {
+            // Calculate level based on total points (e.g., 1000 points = level 1, 2000 points = level 2, etc.)
+            return TotalPoints / 1000 + 1; // Increase level every 1000 points
+        }
+    }
 
     public GoalManager()
     {
@@ -25,7 +39,7 @@ public class GoalManager
     }
 
     // Record completion of a goal by its name
-   public void RecordGoal(string goalName)
+    public void RecordGoal(string goalName)
     {
         foreach (Goal goal in goals)
         {
@@ -43,7 +57,7 @@ public class GoalManager
             }
         }
     }
-    
+
     // Save goals to a file
     public void SaveGoals(string fileName)
     {
@@ -57,7 +71,8 @@ public class GoalManager
         }
     }
 
-   public void LoadGoals(string fileName)
+    // Load goals from a file
+    public void LoadGoals(string fileName)
     {
         if (File.Exists(fileName))
         {
