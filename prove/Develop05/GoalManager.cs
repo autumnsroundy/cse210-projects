@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-
 public class GoalManager
 {
     private List<Goal> goals;
@@ -29,20 +25,25 @@ public class GoalManager
     }
 
     // Record completion of a goal by its name
-    public void RecordGoal(string goalName)
+   public void RecordGoal(string goalName)
     {
         foreach (Goal goal in goals)
         {
             if (goal.Name == goalName)
             {
-                goal.RecordProgress();
-                TotalPoints += goal.Points;
-                Console.WriteLine($"Goal '{goalName}' recorded. {goal.Points} points awarded.");
+                int previousPoints = goal.Progress; // Store previous progress before update
+
+                goal.RecordProgress(); // Update the goal's progress
+
+                int newPoints = goal.Progress - previousPoints; // Calculate points earned
+                TotalPoints += newPoints; // Update total points correctly
+
+                Console.WriteLine($"Goal '{goalName}' recorded. {newPoints} points awarded.");
                 break;
             }
         }
     }
-
+    
     // Save goals to a file
     public void SaveGoals(string fileName)
     {
@@ -56,38 +57,64 @@ public class GoalManager
         }
     }
 
-    // Load goals from a file
-    public void LoadGoals(string fileName)
+   public void LoadGoals(string fileName)
     {
         if (File.Exists(fileName))
         {
             using (StreamReader reader = new StreamReader(fileName))
             {
-                TotalPoints = int.Parse(reader.ReadLine());
+                string totalPointsLine = reader.ReadLine();
+
+                if (string.IsNullOrWhiteSpace(totalPointsLine) || !int.TryParse(totalPointsLine, out int parsedTotalPoints))
+                {
+                    TotalPoints = 0; // Default if missing
+                }
+                else
+                {
+                    TotalPoints = parsedTotalPoints;
+                }
+
                 goals.Clear();
+
                 string line;
                 while ((line = reader.ReadLine()) != null)
                 {
                     var goalData = line.Split('|');
+                    if (goalData.Length < 3) continue;
+
                     string name = goalData[0];
-                    int points = int.Parse(goalData[1]);
+                    if (!int.TryParse(goalData[1], out int points)) continue;
+
                     string type = goalData[2];
 
                     Goal goal = null;
-                    if (type == "SimpleGoal")
+                    if (type == "SimpleGoal" && goalData.Length >= 4)
                     {
-                        goal = new SimpleGoal(name, points);
+                        if (int.TryParse(goalData[3], out int progress))
+                        {
+                            goal = new SimpleGoal(name, points) { Progress = progress };
+                        }
                     }
-                    else if (type == "EternalGoal")
+                    else if (type == "EternalGoal" && goalData.Length >= 4)
                     {
-                        goal = new EternalGoal(name, points);
+                        if (int.TryParse(goalData[3], out int progress))
+                        {
+                            goal = new EternalGoal(name, points) { Progress = progress };
+                        }
                     }
-                    else if (type == "ChecklistGoal")
+                    else if (type == "ChecklistGoal" && goalData.Length >= 6)
                     {
-                        int timesCompleted = int.Parse(goalData[3]);
-                        int timesToComplete = int.Parse(goalData[4]);
-                        int bonus = int.Parse(goalData[5]);
-                        goal = new ChecklistGoal(name, points, timesToComplete, bonus);
+                        if (int.TryParse(goalData[3], out int timesCompleted) &&
+                            int.TryParse(goalData[4], out int timesToComplete) &&
+                            int.TryParse(goalData[5], out int bonus))
+                        {
+                            var checklistGoal = new ChecklistGoal(name, points, timesToComplete, bonus)
+                            {
+                                TimesCompleted = timesCompleted,
+                                Progress = timesCompleted * points // Ensure progress is correctly restored
+                            };
+                            goal = checklistGoal;
+                        }
                     }
 
                     if (goal != null)
@@ -96,6 +123,20 @@ public class GoalManager
                     }
                 }
             }
+        }
+        else
+        {
+            TotalPoints = 0; // Default to 0 if file doesn't exist
+        }
+    }
+
+    // Reset all points and progress
+    public void ResetPoints()
+    {
+        TotalPoints = 0;
+        foreach (var goal in goals)
+        {
+            goal.ResetProgress(); // Ensure each goal properly resets
         }
     }
 }

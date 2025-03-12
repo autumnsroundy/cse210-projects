@@ -1,6 +1,5 @@
-using System;
-
 public class Program
+
 {
     static void Main()
     {
@@ -19,8 +18,9 @@ public class Program
             Console.WriteLine("3. Record Goal Progress");
             Console.WriteLine("4. Save Goals");
             Console.WriteLine("5. Load Goals");
-            Console.WriteLine("6. Exit");
-            Console.Write("Please select an option (1-6): ");
+            Console.WriteLine("6. Reset Points");
+            Console.WriteLine("7. Exit");
+            Console.Write("Please select an option (1-7): ");
 
             string choice = Console.ReadLine();
 
@@ -56,6 +56,13 @@ public class Program
                     Console.ReadLine();
                     break;
                 case "6":
+                    // Reset points and progress
+                    goalManager.ResetPoints();
+                    Console.WriteLine("Points and progress have been reset.");
+                    Console.WriteLine("Press Enter to return to the menu.");
+                    Console.ReadLine();
+                    break;
+                case "7":
                     // Exit the program
                     Console.WriteLine("Goodbye!");
                     return;
@@ -103,7 +110,8 @@ public class Program
             goalManager.AddGoal(new ChecklistGoal(name, points, timesToComplete, bonus));
         }
 
-        Console.WriteLine("Goal added successfully!");
+        goalManager.SaveGoals("goals.txt"); // Autosave after adding the goal
+        Console.WriteLine("Goal added and saved successfully!");
         Console.WriteLine("Press Enter to return to the menu.");
         Console.ReadLine();
     }

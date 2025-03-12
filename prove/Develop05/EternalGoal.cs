@@ -9,6 +9,6 @@ public class EternalGoal : Goal
 
     public override string ToFileFormat()
     {
-        return $"{Name}|{Points}|EternalGoal";
+        return $"{Name}|{Points}|EternalGoal|{Progress}"; // Save progress
     }
 }

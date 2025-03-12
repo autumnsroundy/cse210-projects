@@ -1,25 +1,37 @@
 public class ChecklistGoal : Goal
 {
     public int TimesToComplete { get; set; }
+    public int TimesCompleted { get; set; } // Track progress
     public int Bonus { get; set; }
 
     public ChecklistGoal(string name, int points, int timesToComplete, int bonus) : base(name, points)
     {
         TimesToComplete = timesToComplete;
         Bonus = bonus;
+        TimesCompleted = 0; // Ensure tracking
     }
 
     public override void RecordProgress()
     {
-        Progress += Points; // Increase progress by points each time
-        if (Progress >= TimesToComplete * Points)
+        if (TimesCompleted < TimesToComplete) 
         {
-            Progress += Bonus; // Add bonus when checklist is complete
+            TimesCompleted++;
+            Progress += Points; // Add points per completion
+        }
+
+        if (TimesCompleted == TimesToComplete)
+        {
+            Progress += Bonus; // Add bonus when fully completed
         }
     }
 
     public override string ToFileFormat()
     {
-        return $"{Name}|{Points}|ChecklistGoal|{Progress}|{TimesToComplete}|{Bonus}";
+        return $"{Name}|{Points}|ChecklistGoal|{TimesCompleted}|{TimesToComplete}|{Bonus}"; // Save progress
+    }
+
+    public override string ToString()
+    {
+        return $"{Name}: {TimesCompleted}/{TimesToComplete} completed, {Progress} points"; // Display correctly
     }
 }

@@ -2,7 +2,7 @@ public abstract class Goal
 {
     public string Name { get; set; }
     public int Points { get; set; }
-    public int Progress { get; set; }
+    public int Progress { get; set; } // Ensure this is saved!
 
     public Goal(string name, int points)
     {
@@ -17,6 +17,10 @@ public abstract class Goal
 
     public override string ToString()
     {
-        return $"{Name}: {Progress}/{Points} points";
+        return $"{Name}: {Progress}/{Points} points"; // Show correct progress
+    }
+    public virtual void ResetProgress()
+    {
+        Progress = 0;
     }
 }

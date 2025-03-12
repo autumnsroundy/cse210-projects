@@ -4,11 +4,11 @@ public class SimpleGoal : Goal
 
     public override void RecordProgress()
     {
-        Progress = Points; // Simple goal is completed in one step
+        Progress = Points; // Mark goal as complete
     }
 
     public override string ToFileFormat()
     {
-        return $"{Name}|{Points}|SimpleGoal";
+        return $"{Name}|{Points}|SimpleGoal|{Progress}"; // Save progress
     }
 }

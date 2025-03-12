@@ -1,4 +1,5 @@
-100
-Run a Marathon|1000|SimpleGoal
-Read Scriptures|100|EternalGoal
-Attend the Temple|50|ChecklistGoal|0|10|500
+1360
+Write in Journal|20|ChecklistGoal|1|7|100
+Read scriptures|20|ChecklistGoal|4|4|200
+Read a book|50|SimpleGoal|0
+Serve everyday|30|EternalGoal|60
