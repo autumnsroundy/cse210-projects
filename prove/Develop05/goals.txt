@@ -1,0 +1,4 @@
+100
+Run a Marathon|1000|SimpleGoal
+Read Scriptures|100|EternalGoal
+Attend the Temple|50|ChecklistGoal|0|10|500
