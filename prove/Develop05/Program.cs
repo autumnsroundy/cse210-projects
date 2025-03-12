@@ -1,3 +1,5 @@
+// stretch challenge: I decide to add a capability of leveling up in the program based on points. When the 
+//user reaches 1000 pts, then the program knows to level up the user to the next set of goals established. 
 public class Program
 
 {
