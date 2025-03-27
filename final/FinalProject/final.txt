@@ -1,0 +1,53 @@
+**Project Brief: Personal Finance Tracker**
+
+### **Project Option Chosen:**
+Open-ended project.
+
+### **Project Overview**
+The **Personal Finance Tracker** is a C# application designed to assist users in managing their financial transactions, setting savings goals, and tracking expenses. This program will provide an intuitive way to monitor income, expenditures, and budgeting habits while demonstrating key object-oriented programming (OOP) principles such as abstraction, encapsulation, inheritance, and polymorphism.
+
+This project will be developed as part of the open-ended project option, ensuring the implementation of core programming concepts while solving a real-world problem. The system will allow users to log financial transactions, set and track financial goals, and analyze spending trends through data visualization.
+
+### **Purpose and Goals**
+The primary purpose of this project is to create a structured and user-friendly financial management system that allows individuals to:
+- Track their income and expenses effectively.
+- Set and monitor savings and debt repayment goals.
+- Gain insights into their spending habits through reports and visualizations.
+- Enhance their financial literacy by organizing their transactions.
+
+This project will also serve as a demonstration of core OOP principles while ensuring code reusability, maintainability, and scalability.
+
+### **Project Intentions**
+This application will be structured to include multiple classes that interact with each other to fulfill the system’s objectives. The project will showcase:
+- **Abstraction**: The application will use abstract classes such as `Transaction` and `Goal` to define general financial behaviors while allowing specific implementations in derived classes.
+- **Encapsulation**: Each class will have private fields with public methods to access necessary information, ensuring data integrity and controlled access.
+- **Inheritance**: The `Transaction` class will serve as a base class for `Income` and `Expense`, while `Goal` will be a base class for `SavingsGoal` and `DebtRepaymentGoal`.
+- **Polymorphism**: Methods like `GetTransactionDetails()` and `CheckProgress()` will be overridden in derived classes to provide specialized behavior.
+
+### **Program Features**
+1. **Transaction Management**  
+   - Users can add, view, and categorize transactions.  
+   - Supports different transaction types: Income and Expense.  
+   
+2. **Budgeting System**  
+   - Tracks spending against a set monthly budget.  
+   - Provides warnings when spending approaches budget limits.  
+   
+3. **Financial Goal Tracking**  
+   - Allows users to set savings and debt repayment goals.  
+   - Tracks progress and provides updates on goal completion.  
+   
+4. **Data Persistence**  
+   - Stores transaction and goal data in a file for future access.  
+   - Enables users to load previous financial records.  
+   
+5. **User Interface (Basic CLI or GUI)**  
+   - Simple and intuitive interface for managing finances.  
+   - Optional GUI implementation using WinForms or WPF.  
+   
+6. **Visualization (Optional Enhancement)**  
+   - Graphical representation of financial trends and spending habits.
+
+### **Conclusion**
+The **Personal Finance Tracker** aims to provide users with an effective financial management tool while demonstrating advanced programming concepts in C#. By implementing key OOP principles, this project will reinforce best practices in software design and development. The final result will be a practical, user-friendly, and expandable application that promotes financial awareness and organization.
+
