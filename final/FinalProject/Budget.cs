@@ -3,16 +3,31 @@ using System.Linq;
 
 class Budget
 {
-    public List<Transaction> Transactions { get; private set; } = new List<Transaction>();
+    public List<Income> Incomes { get; private set; } = new List<Income>();
+    public List<Expense> Expenses { get; private set; } = new List<Expense>();
 
-    public void AddTransaction(Transaction transaction)
+    public void AddIncome(Income income)
     {
-        Transactions.Add(transaction);
+        Incomes.Add(income);
+    }
+
+    public void AddExpense(Expense expense)
+    {
+        Expenses.Add(expense);
+    }
+
+    public decimal GetTotalIncome()
+    {
+        return Incomes.Sum(i => i.Amount);
+    }
+
+    public decimal GetTotalExpenses()
+    {
+        return Expenses.Sum(e => e.Amount);
     }
 
     public decimal GetRemainingBudget(decimal monthlyBudget)
     {
-        decimal totalExpenses = Transactions.OfType<Expense>().Sum(e => e.Amount);
-        return monthlyBudget - totalExpenses;
+        return monthlyBudget - GetTotalExpenses();
     }
 }
