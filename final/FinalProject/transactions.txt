@@ -1,0 +1,4 @@
+Income,1200,4/1/2025 10:17:25 AM,Work,Payment from project.,Freelance
+Income,1200,4/1/2025 10:18:21 AM,Work,Payment from project,Freelance
+Income,2000,4/1/2025 10:20:04 AM,Debt repayment,Payment for student debt,Business
+Expense,300,4/1/2025 10:19:17 AM,Bills,Payment for utilities,Debit Card
